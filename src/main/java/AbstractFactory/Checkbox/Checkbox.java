@@ -1,0 +1,18 @@
+/**
+ * @Project: testDeomInSpring
+ * @ClassName: Checkbox
+ * @Date: 2024年 02月 29日 14:19
+ * @version V1.0
+ * @Author: MR.Yu
+ * Copyright (c) All Rights Reserved, 2024.
+ **/
+package AbstractFactory.Checkbox;
+
+/**
+ * @Description:
+ * @Date: 2024年02月29日 14:19
+ * @Author: MR.Yu
+ **/
+public interface Checkbox {
+    void paint();
+}
