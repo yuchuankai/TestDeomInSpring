@@ -6,7 +6,9 @@
  * @Author: MR.Yu
  * Copyright (c) All Rights Reserved, 2024.
  **/
-package 数据库连接;
+package 数据库连接.mysql;
+
+import org.apache.commons.lang.Validate;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -27,7 +29,8 @@ public class MysqlDemo {
     public static String password = "szoscar55";
 
     public static void main(String[] args){
-        getConn();
+        conn = getConn();
+        Validate.notNull(conn, "Get connection filed.");
         List<String> executeSqlList = new ArrayList<>();
         String sql1 = "INSERT INTO datasync.consume_detail_real(ID, AMOUNT, GOODS, REASON, PERSON, CONSUME_TIME) VALUES(14, 34, '文具盒1', '购买办公用品', '张立华', '2023-09-03 11:34:18');";
         String sql2 = "INSERT INTO datasync.consume_detail_real(ID, AMOUNT, GOODS, REASON, PERSON, CONSUME_TIME) VALUES(15, 34, '文具盒1', '购买办公用品', '张立华', '2023-09-03 11:34:18');";
@@ -38,17 +41,18 @@ public class MysqlDemo {
     }
 
 
-    public static void getConn(){
+    public static Connection getConn(){
         try {
             //注册驱动(maven可以不用注册)
             Class<?> aClass = Class.forName("com.mysql.cj.jdbc.Driver");
             Driver driver = (Driver)aClass.newInstance();
             DriverManager.registerDriver(driver);
 
-            conn = DriverManager.getConnection(url, user, password);
+            return DriverManager.getConnection(url, user, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public static void transactionSubmit(List<String> executeSqlList){
