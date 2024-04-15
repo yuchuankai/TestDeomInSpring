@@ -10,9 +10,14 @@
 import canal.testMigrateMap;
 import collect.MigrateMap;
 import org.apache.commons.cli.*;
+import org.apache.commons.lang.math.NumberUtils;
 import sun.net.dns.ResolverConfiguration;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @Description:
@@ -22,23 +27,18 @@ import java.util.*;
 public class main {
 
     public static void main(String[] args) {
-        System.out.println(Arrays.asList(args));
-        Options options = new Options();
-        options.addOption("h", "help", false, "print help information");
-        options.addOption("job",true, "吼吼吼");
+        String a = "你好,世界这么大我想去kankan";
 
-        BasicParser parser = new BasicParser();
-        try {
-            CommandLine cl = parser.parse(options, args);
+//        System.out.println(NumberUtils.createBigDecimal(a).toBigInteger());
 
-            System.out.println(cl.getOptionValue("job"));
-            if (cl.hasOption("h")) {
-                HelpFormatter formatter = new HelpFormatter();
-                formatter.printHelp("MyApp", options);
+        byte[] bytes = new byte[0];
+        bytes = a.getBytes(StandardCharsets.UTF_8);
+        for (int i = 0; i < bytes.length; i++) {
+            if (bytes[i] < 0) {
+                bytes[i] = (byte) (bytes[i] * -1);
             }
-        } catch (ParseException e) {
-            e.printStackTrace();
         }
+        System.out.println(new String(bytes, StandardCharsets.UTF_8));
     }
 
 }

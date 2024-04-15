@@ -24,6 +24,8 @@ public class FPEExample {
         // 映射字符表，规定了明文和密文的字符范围
         BasicAlphabetMapper numberMapper = new BasicAlphabetMapper("0123456789");
 
+        BasicAlphabetMapper textMapper = new BasicAlphabetMapper("abcdefghijklmnopqrstuvwxyz");
+
 
         // 初始化 aes 密钥（随机），长度必须是16bytes、24bytes或32bytes
         byte[] keyBytes = RandomUtil.randomBytes(16);
