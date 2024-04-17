@@ -10,6 +10,7 @@ package Map转JSON;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import org.apache.commons.lang.StringUtils;
@@ -27,10 +28,12 @@ public class MapToJson {
 
     private final static String READER_NAME = "job.content[0].reader.name";
     private final static String READER_COLUMN = "job.content[0].reader.column";
-    private final static String READER_CONNECTION = "job.content[0].reader.connection[0].connection";
+    private final static String READER_JDBC_URL = "job.content[0].reader.connection[0].jdbcUrl";
     private final static String WRITER_NAME = "job.content[1].writer.name";
     private final static String WRITER_COLUMN = "job.content[1].writer.column";
-    private final static String WRITER_CONNECTION = "job.content[1].writer.connection[0].connection";
+    private final static String WRITER_JDBC_URL = "job.content[1].writer.connection[0].jdbcUrl";
+    private final static String CHANNEL  = "job.setting.speed.channel";
+    private final static String BYTES  = "job.setting.speed.bytes";
     public static void main(String[] args) {
         Map<String, Object> jobMap = new HashMap<>();
         jobMap.put(READER_NAME, "mysqlReader");
@@ -45,11 +48,15 @@ public class MapToJson {
         column1.setType("varchar");
         readerColumns.add(column);
         readerColumns.add(column1);
+        List<String> jdbcUrl = new ArrayList<>();
+        jdbcUrl.add("jdbc:mysql://10.0.44.37:3306/ems2x");
         jobMap.put(READER_COLUMN, readerColumns);
-        jobMap.put(READER_CONNECTION, "readerConnection的值");
         jobMap.put(WRITER_NAME, "mysqlWriter");
+        jobMap.put(READER_JDBC_URL, jdbcUrl);
         jobMap.put(WRITER_COLUMN, readerColumns);
-        jobMap.put(WRITER_CONNECTION, "writerConnection的值");
+        jobMap.put(WRITER_JDBC_URL, jdbcUrl);
+        jobMap.put(CHANNEL, 1);
+        jobMap.put(BYTES, 1024);
         long start = System.currentTimeMillis();
         String s = mapToJson(jobMap);
         System.out.println("耗时：" + (System.currentTimeMillis() - start) + " 毫秒");
@@ -73,28 +80,15 @@ public class MapToJson {
         String target = split2List.get(split2List.size() - 1);
         for (final String eachKey : split2List) {
             String each = purgeValue(eachKey);
-            if (target.equals(each)) {
-                taskJson.put(target, o);
+            if (target.equals(eachKey)) {
+                taskJson.put(each, o);
                 break;
             }
             if (isKeyMap(eachKey)) {
-                if (taskJson.containsKey(each)) {
-                    taskJson = taskJson.getJSONObject(each);
-                } else {
-                    taskJson.put(each, new JSONObject());
-                    taskJson = taskJson.getJSONObject(each);
-                }
+                taskJson = ensureNestedMap(taskJson, each);
             } else {
                 int index = getIndexInKey(eachKey);
-                if (!taskJson.containsKey(each)) {
-                    taskJson.put(each, new JSONArray());
-                }
-                if (taskJson.getJSONArray(each).size() <= index) {
-                    while (taskJson.getJSONArray(each).size() <= index) {
-                        taskJson.getJSONArray(each).add(new JSONObject());
-                    }
-                }
-                taskJson = taskJson.getJSONArray(each).getJSONObject(index);
+                taskJson = ensureNestedArray(taskJson, each, index);
             }
         }
     }
@@ -119,5 +113,25 @@ public class MapToJson {
             return eachKey.substring(0,eachKey.indexOf("[")).trim();
         }
         return eachKey.trim();
+    }
+
+    private static JSONObject ensureNestedMap(JSONObject taskJson, String key) throws JSONException {
+        if (!taskJson.containsKey(key)) {
+            taskJson.put(key, new JSONObject());
+        }
+        return taskJson.getJSONObject(key);
+    }
+
+    private static JSONObject ensureNestedArray(JSONObject taskJson, String key, int index) throws JSONException {
+        ensureArray(taskJson, key);
+        while (taskJson.getJSONArray(key).size() <= index) {
+            taskJson.getJSONArray(key).add(new JSONObject());
+        }
+        return taskJson.getJSONArray(key).getJSONObject(index);
+    }
+    private static void ensureArray(JSONObject taskJson, String key) throws JSONException {
+        if (!taskJson.containsKey(key)) {
+            taskJson.put(key, new JSONArray());
+        }
     }
 }
