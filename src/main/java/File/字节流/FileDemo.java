@@ -6,7 +6,7 @@
  * @Author: MR.Yu
  * Copyright (c) All Rights Reserved, 2024.
  **/
-package File;
+package File.字节流;
 
 import org.apache.commons.lang.Validate;
 
