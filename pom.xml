@@ -68,6 +68,25 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/org.openjdk.jol/jol-core -->
+        <!--解析class对象头信息-->
+        <dependency>
+            <groupId>org.openjdk.jol</groupId>
+            <artifactId>jol-core</artifactId>
+            <version>0.17</version>
+        </dependency>
+
+
+
+
+        <!--集成kafka-->
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>3.7.0</version>
+        </dependency>
+
+
 
     </dependencies>
 

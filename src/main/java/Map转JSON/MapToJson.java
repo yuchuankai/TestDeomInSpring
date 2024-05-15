@@ -27,11 +27,11 @@ import java.util.*;
 public class MapToJson {
 
     private final static String READER_NAME = "job.content[0].reader.name";
-    private final static String READER_COLUMN = "job.content[0].reader.column";
-    private final static String READER_JDBC_URL = "job.content[0].reader.connection[0].jdbcUrl";
+    private final static String READER_COLUMN = "job.content[0].reader.parameter.column";
+    private final static String READER_JDBC_URL = "job.content[0].reader.parameter.connection[0].jdbcUrl";
     private final static String WRITER_NAME = "job.content[1].writer.name";
-    private final static String WRITER_COLUMN = "job.content[1].writer.column";
-    private final static String WRITER_JDBC_URL = "job.content[1].writer.connection[0].jdbcUrl";
+    private final static String WRITER_COLUMN = "job.content[1].writer.parameter.column";
+    private final static String WRITER_JDBC_URL = "job.content[1].writer.parameter.connection[0].jdbcUrl";
     private final static String CHANNEL  = "job.setting.speed.channel";
     private final static String BYTES  = "job.setting.speed.bytes";
     public static void main(String[] args) {

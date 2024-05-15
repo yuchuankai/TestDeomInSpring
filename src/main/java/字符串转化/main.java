@@ -1,27 +1,18 @@
 /**
  * @Project: testDeomInSpring
  * @ClassName: main
- * @Date: 2024年 02月 23日 10:07
+ * @Date: 2024年 05月 06日 14:23
  * @version V1.0
  * @Author: MR.Yu
  * Copyright (c) All Rights Reserved, 2024.
  **/
-
-import canal.testMigrateMap;
-import collect.MigrateMap;
-import org.apache.commons.cli.*;
-import org.apache.commons.lang.math.NumberUtils;
-import sun.net.dns.ResolverConfiguration;
+package 字符串转化;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @Description:
- * @Date: 2024年 02月 23日 10:07
+ * @Date: 2024年 05月 06日 14:23
  * @Author: MR.Yu
  **/
 public class main {
@@ -38,5 +29,4 @@ public class main {
         System.out.println(bytes.length);
         System.out.println(new String(bytes, "GBK"));
     }
-
 }
