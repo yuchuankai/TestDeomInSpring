@@ -33,10 +33,10 @@ public class main {
     public static void main(String[] args){
 
         String w1 = new StringBuilder("你好").append("世界").toString();
-//        String w2 = "你好世界";
+        String w2 = "你好世界";
         String w3 = new String("你好世界");
 //
-//        System.out.println(w3 == w2);
+        System.out.println(w3.intern() == w2);
 //        System.out.println(w3.intern() == w1.intern());
 
         String str2 = new StringBuilder("ja").append("va").toString();
@@ -53,7 +53,8 @@ public class main {
 //        System.out.println(str4.intern() == str6.intern());
 
 
-
+        boolean isFailed = false;
+        System.out.println(Math.round(1.5));
     }
 
 }

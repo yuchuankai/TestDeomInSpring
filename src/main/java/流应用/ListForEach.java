@@ -9,6 +9,8 @@
 package 流应用;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -20,12 +22,24 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ListForEach {
 
     public static void main(String[] args) {
+        String a = "aaa";
+        String bbb = a.concat("bbb");
+    }
+
+
+
+
+
+    public static void foreachSleep(){
         List<String> list = Arrays.asList("a", "b", "c", "d", "e", "f");
 
         AtomicInteger index = new AtomicInteger(1);
         list.forEach(s -> {
-            System.out.println(index.get());
-            index.getAndIncrement();
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             System.out.println(s);
         });
     }

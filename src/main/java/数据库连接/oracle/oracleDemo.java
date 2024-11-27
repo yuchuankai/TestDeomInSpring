@@ -16,7 +16,7 @@ public class oracleDemo {
     public static Connection conn = null;
     public static PreparedStatement ps = null;
 
-    public static String url = "jdbc:oracle:thin:@//10.0.47.57:1521/ORCL";
+    public static String url = "jdbc:oracle:thin:@//10.0.47.57:1521/ORCL;remarksReporting=true";
     public static String user = "system";
     public static String password = "szoscar55";
 
@@ -41,7 +41,7 @@ public class oracleDemo {
             prop.setProperty("user", user);
             prop.setProperty("password", password);
             // 获取注释
-            prop.setProperty("remarksReporting", "true");
+//            prop.setProperty("remarksReporting", "true");
             return DriverManager.getConnection(url, prop);
         } catch (Exception e) {
             e.printStackTrace();
