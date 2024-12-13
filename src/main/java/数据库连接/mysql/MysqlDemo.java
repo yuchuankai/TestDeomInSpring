@@ -24,7 +24,7 @@ public class MysqlDemo {
     public static Connection conn = null;
     public static PreparedStatement ps = null;
 
-    public static String url = "jdbc:mysql://10.0.47.57:3306/mysql?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+    public static String url = "jdbc:mysql://10.0.47.73:3306/datasync?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     public static String user = "root";
     public static String password = "szoscar55";
 
