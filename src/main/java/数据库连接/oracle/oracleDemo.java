@@ -15,21 +15,12 @@ public class oracleDemo {
 
     public static Connection conn = null;
     public static PreparedStatement ps = null;
-
-    public static String url = "jdbc:oracle:thin:@//10.0.47.57:1521/ORCL;remarksReporting=true";
+    public static String url = "jdbc:oracle:thin:@//10.0.63.93:1539/ORCL";
     public static String user = "system";
-    public static String password = "szoscar55";
+    public static String password = "1qaz!QAZ";
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        conn = getConn();
-        Validate.notNull(conn, "Get connection filed.");
-        ResultSet rs = conn.getMetaData().getTables(null, "C##ROOT1", "%", new String[]{"TABLE"});
-        while (rs.next()) {
-            System.out.println("Table Name: " + rs.getString("TABLE_NAME"));
-            System.out.println("Table Type: " + rs.getString("TABLE_TYPE"));
-            System.out.println("Remarks: " + rs.getString("REMARKS"));
-            System.out.println("--------------------");
-        }
+        createTable();
     }
 
 
@@ -47,5 +38,27 @@ public class oracleDemo {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static void selectTable() throws SQLException {
+        conn = getConn();
+        Validate.notNull(conn, "Get connection filed.");
+        ResultSet rs = conn.getMetaData().getTables(null, "C##ROOT1", "%", new String[]{"TABLE"});
+        while (rs.next()) {
+            System.out.println("Table Name: " + rs.getString("TABLE_NAME"));
+            System.out.println("Table Type: " + rs.getString("TABLE_TYPE"));
+            System.out.println("Remarks: " + rs.getString("REMARKS"));
+            System.out.println("--------------------");
+        }
+    }
+
+    public static void createTable() throws SQLException {
+        conn = getConn();
+        Validate.notNull(conn, "Get connection filed.");
+
+
+        String sql = "create table DATASYNC.test(id number(10), name varchar2(20))";
+        ps = conn.prepareStatement(sql);
+        ps.execute();
     }
 }
