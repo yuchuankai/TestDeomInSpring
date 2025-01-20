@@ -6,7 +6,7 @@
  * @Author: MR.Yu
  * Copyright (c) All Rights Reserved, 2024.
  **/
-package File.管道流;
+package Java_io.File.管道流;
 
 import java.io.IOException;
 import java.io.PipedInputStream;

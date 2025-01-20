@@ -55,6 +55,12 @@
             <version>8.0.17</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.oscar</groupId>
+            <artifactId>oscarJDBC</artifactId>
+            <version>4.1.92</version>
+        </dependency>
+
 
         <!--  加密所需类库      -->
         <dependency>
@@ -164,6 +170,13 @@
             <version>1.18.30</version>
         </dependency>
 
+
+        <!-- 连接FTP -->
+        <dependency>
+            <groupId>commons-net</groupId>
+            <artifactId>commons-net</artifactId>
+            <version>3.3</version>
+        </dependency>
 
     </dependencies>
 

@@ -18,6 +18,16 @@ import java.io.UnsupportedEncodingException;
 public class main {
 
     public static void main(String[] args) throws UnsupportedEncodingException {
+
+        test("test", "range");
+
+    }
+
+    private static void test(String tableName, String range) {
+        System.out.println(String.format("DELETE FROM %s WHERE %s", tableName, range));
+    }
+
+    private static void test2() throws UnsupportedEncodingException {
         String a = "你好";
 
         byte[] bytes = a.getBytes("GBK");

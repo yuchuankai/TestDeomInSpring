@@ -31,7 +31,7 @@ public class MysqlSlave {
             PreparedStatement ps = conn.prepareStatement(QUERY_BINLOG);
             ResultSet re = ps.executeQuery();
             while (re.next()) {
-                file = re.getString("File");
+                file = re.getString("Java_io/File");
                 position = re.getString("Position");
             }
             System.out.println("file:" + file + " position:" + position);
