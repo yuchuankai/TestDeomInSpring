@@ -24,12 +24,12 @@ import java.util.Arrays;
 import java.util.Properties;
 
 public class MsgConsumer {
-    private final static String TOPIC_NAME = "yu";
+    private final static String TOPIC_NAME = "test_max";
     private final static String CONSUMER_GROUP_NAME = "javaGroup";
 
     public static void main(String[] args) {
         Properties props = new Properties();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.0.47.73:9092");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.0.47.74:9092");
         // 消费分组名
         props.put(ConsumerConfig.GROUP_ID_CONFIG, CONSUMER_GROUP_NAME);
         // 是否自动提交offset，默认就是true
@@ -42,7 +42,7 @@ public class MsgConsumer {
         latest(默认) ：只消费自己启动之后发送到主题的消息
         earliest：第一次从头开始消费，以后按照消费offset记录继续消费，这个需要区别于consumer.seekToBeginning(每次都从头开始消费)
         */
-        //props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
       /*
       consumer给broker发送心跳的间隔时间，broker接收到心跳如果此时有rebalance发生会通过心跳响应将
       rebalance方案下发给consumer，这个时间可以稍微短一点

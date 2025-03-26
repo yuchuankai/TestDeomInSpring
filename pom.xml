@@ -178,6 +178,23 @@
             <version>3.3</version>
         </dependency>
 
+
+
+        <dependency>
+            <groupId>com.google.auto.service</groupId>
+            <artifactId>auto-service</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
+
+
+        <!--TDengine数据库驱动-->
+        <dependency>
+            <groupId>com.taosdata.jdbc</groupId>
+            <artifactId>taos-jdbcdriver</artifactId>
+            <version>3.2.2</version>
+        </dependency>
+
     </dependencies>
 
 </project>

@@ -10,9 +10,16 @@ import java.sql.*;
 public class main {
 
     public static void main(String[] args) throws SQLException {
-        Connection conn = getConn();
-        DatabaseMetaData metaData = conn.getMetaData();
-        selectTableColumns(metaData);
+//        Connection conn = getConn();
+//        DatabaseMetaData metaData = conn.getMetaData();
+//        selectTableColumns(metaData);
+
+
+        try {
+            testPost();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 
@@ -62,6 +69,28 @@ public class main {
             }
 
 
+        }
+    }
+
+
+    public static void testPost() throws ClassNotFoundException, SQLException {
+//        Class.forName("org.postgresql.Driver");
+        String url = "jdbc:postgresql://10.0.47.75:15400/datasync";
+        Connection connection = DriverManager.getConnection(url, "datasync", "szoscar55..");
+        try {
+            Statement statement = connection.createStatement();
+            boolean execute = statement.execute("select * from ztf.st_lxtb_yd_clob");
+
+            ResultSet resultSet = statement.getResultSet();
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            int columnCount = metaData.getColumnCount();
+            System.out.println("columnCount:" + columnCount);
+            for (int i = 1; i <= columnCount; i++) {
+                resultSet.next();
+                System.out.print(resultSet.getString(1) + "   ");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

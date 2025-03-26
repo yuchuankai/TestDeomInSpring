@@ -24,4 +24,5 @@ public class A {
     public B getB() {
         return b;
     }
+
 }

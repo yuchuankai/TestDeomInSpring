@@ -16,7 +16,7 @@ public class main {
 
     public static void main(String[] args) {
         hazelcast1();
-        hazelcast2();
+//        hazelcast2();
     }
 
 
@@ -33,13 +33,13 @@ public class main {
         System.out.println("Customer with key 1: "+ mapCustomers.get(1));
         System.out.println("Map Size:" + mapCustomers.size());
 
-        Queue<String> queueCustomers = instance.getQueue("customers");
-        queueCustomers.offer("Tom");
-        queueCustomers.offer("Mary");
-        queueCustomers.offer("Jane");
-        System.out.println("First customer: " + queueCustomers.poll());
-        System.out.println("Second customer: "+ queueCustomers.peek());
-        System.out.println("Queue size: " + queueCustomers.size());
+//        Queue<String> queueCustomers = instance.getQueue("customers");
+//        queueCustomers.offer("Tom");
+//        queueCustomers.offer("Mary");
+//        queueCustomers.offer("Jane");
+//        System.out.println("First customer: " + queueCustomers.poll());
+//        System.out.println("Second customer: "+ queueCustomers.peek());
+//        System.out.println("Queue size: " + queueCustomers.size());
     }
 
     public static void hazelcast2(){

@@ -13,6 +13,7 @@ package kafka;
  * @Date: 2024年 05月 10日 14:40
  * @Author: MR.Yu
  **/
+import com.alibaba.fastjson.JSONObject;
 import org.apache.kafka.clients.producer.*;
 import org.apache.kafka.common.serialization.StringSerializer;
 
@@ -26,7 +27,7 @@ public class MsgProducer {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.0.47.73:9092");
+        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.0.47.74:9092");
          /*
          发出消息持久化机制参数
         （1）acks=0： 表示producer不需要等待任何broker确认收到消息的回复，就可以继续发送下一条消息。性能最高，但是最容易丢消息。
@@ -64,9 +65,9 @@ public class MsgProducer {
         //把发送消息value从字符串序列化为字节数组
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
-        Producer<String, String> producer = new KafkaProducer<String, String>(props);
+        Producer<String, String> producer = new KafkaProducer<>(props);
 
-        int msgNum = 5;
+        int msgNum = 1;
         final CountDownLatch countDownLatch = new CountDownLatch(msgNum);
         for (int i = 1; i <= msgNum; i++) {
             //指定发送分区
@@ -75,8 +76,11 @@ public class MsgProducer {
                     , 0, order.getOrderId().toString(), JSON.toJSONString(order));
             */
             //未指定发送分区，具体发送的分区计算公式：hash(key)%partitionNum
-            ProducerRecord<String, String> producerRecord = new ProducerRecord<String, String>(TOPIC_NAME
-                    , i + "order.getOrderId().toString()", i + "JSON.toJSONString(order)");
+            JSONObject value = new JSONObject();
+            value.put("id", "2");
+            value.put("name", "shentong");
+            ProducerRecord<String, String> producerRecord = new ProducerRecord<>(TOPIC_NAME
+                    , i + "order.getOrderId().toString()", value.toString());
 
             //等待消息发送成功的同步阻塞方法
 //            RecordMetadata metadata = producer.send(producerRecord).get();
