@@ -71,7 +71,7 @@
         <dependency>
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15to18</artifactId>
-            <version>1.69</version>
+            <version>1.76</version>
         </dependency>
 
 
@@ -194,6 +194,19 @@
             <artifactId>taos-jdbcdriver</artifactId>
             <version>3.2.2</version>
         </dependency>
+
+
+        <!--rabbitMQ依赖-->
+        <!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+            <version>5.20.0</version>
+        </dependency>
+
+        <!--FPE保留格式加密算法-->
+
+
 
     </dependencies>
 
