@@ -44,7 +44,7 @@ public class SocketNioDemo {
                         SocketChannel client = server.accept();
                         client.configureBlocking(false);
                         client.register(selector, SelectionKey.OP_READ);
-                        ByteBuffer buffer = ByteBuffer.wrap("Hello, Client!".getBytes());
+                        ByteBuffer buffer = ByteBuffer.wrap("Hello, Client1!".getBytes());
                         client.write(buffer);
                     } else if (key.isReadable()) {
                         SocketChannel client = (SocketChannel) key.channel();
@@ -53,7 +53,7 @@ public class SocketNioDemo {
                         buffer.flip();
                         byte[] bytes = new byte[buffer.remaining()];
                         buffer.get(bytes);
-                        System.out.println("Client says: " + new String(bytes));
+                        System.out.println("Client1 says: " + new String(bytes));
                     }
                 }
             }

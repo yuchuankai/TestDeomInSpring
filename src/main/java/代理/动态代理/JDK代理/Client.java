@@ -1,4 +1,4 @@
-package 代理.动态代理;
+package 代理.动态代理.JDK代理;
 
 /**
  * @CreateTime: 2024年 12月 16日 10:19

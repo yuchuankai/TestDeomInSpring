@@ -1,7 +1,9 @@
 package 代理;
 
-import 代理.动态代理.LawyerHandler;
-import 代理.动态代理.TrAction;
+import 代理.动态代理.CGLIB.Client1;
+import 代理.动态代理.CGLIB.LawyerInterceptor;
+import 代理.动态代理.JDK代理.LawyerHandler;
+import 代理.动态代理.JDK代理.TrAction;
 import 代理.静态代理.Action;
 import 代理.静态代理.Client;
 import 代理.静态代理.Lawyer;
@@ -15,6 +17,7 @@ public class TestAop {
 
     public static void main(String[] args) {
         test2();
+        test3();
     }
 
     /**
@@ -36,8 +39,17 @@ public class TestAop {
      * JDK动态代理，需要被代理类实现某个接口，如果该类没有实现接口，则无法使用JDK动态代理
      */
     public static void test2(){
-        TrAction client = new 代理.动态代理.Client();
+        TrAction client = new 代理.动态代理.JDK代理.Client();
         TrAction lawyer = new LawyerHandler().bind(client);
+        System.out.println(lawyer.getClass());
+        lawyer.litigation();
+        lawyer.consult();
+    }
+
+    public static void test3(){
+        Client1 client = new Client1();
+        Client1 lawyer = (Client1) new LawyerInterceptor().getInstance(client);
+        System.out.println(lawyer.getClass());
         lawyer.litigation();
         lawyer.consult();
     }

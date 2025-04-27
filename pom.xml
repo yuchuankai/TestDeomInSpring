@@ -204,7 +204,12 @@
             <version>5.20.0</version>
         </dependency>
 
-        <!--FPE保留格式加密算法-->
+        <!-- https://mvnrepository.com/artifact/cglib/cglib -->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
+        </dependency>
 
 
 

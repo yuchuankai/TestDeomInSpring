@@ -1,4 +1,4 @@
-package 代理.动态代理;
+package 代理.动态代理.JDK代理;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

@@ -16,7 +16,7 @@ public class TestHashMap {
     }
 
     private static void test1() {
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, String> map = new HashMap<>(10);
         map.put("1", "1");
         map.put("2", "2");
         map.put("3", "3");
