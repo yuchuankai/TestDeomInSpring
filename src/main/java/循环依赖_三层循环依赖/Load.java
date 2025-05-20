@@ -1,4 +1,4 @@
-package 自定义注解;
+package 循环依赖_三层循环依赖;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

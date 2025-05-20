@@ -1,8 +1,8 @@
-package 自定义注解;
+package 循环依赖_三层循环依赖;
 
 
-import 自定义注解.entity.A;
-import 自定义注解.entity.B;
+import 循环依赖_三层循环依赖.entity.A;
+import 循环依赖_三层循环依赖.entity.B;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
