@@ -15,12 +15,12 @@ public class oracleDemo {
 
     public static Connection conn = null;
     public static PreparedStatement ps = null;
-    public static String url = "jdbc:oracle:thin:@//10.0.63.93:1539/ORCL";
+    public static String url = "jdbc:oracle:thin:@//10.0.47.57:1521/ORCL";
     public static String user = "system";
-    public static String password = "1qaz!QAZ";
+    public static String password = "szoscar55";
 
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        createTable();
+        selectTable();
     }
 
 
